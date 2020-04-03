@@ -72,6 +72,20 @@ app.get('/', function(req,res){
   res.send('Welcome to my Top Ten Films')
 });
 
+//ERROR HANDLING
+const bodyParser = require('body-parser'),
+  methodOverride = require('method=override');
+
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+  app.use(bodyParser.json());
+  app.use(methodOverride());
+  app.use(function (err, req, res, next){
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+  });
+
 
 
 //listen
