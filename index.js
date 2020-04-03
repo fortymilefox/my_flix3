@@ -1,4 +1,7 @@
-const express = require('express');
+//Require func.
+const express = require('express'),
+  morgan = require('morgan');
+
 const app = express();
 
 
@@ -57,7 +60,11 @@ let tenMov = [ {
   stars: 'Jason Schwartzman, Natalie Portman'
 }
 ]
-
+//serve static files
+app.use(express.static('public'));
+//Morgan
+app.use(morgan('common'));
+//GET functions
 app.get('/movies', function(req, res){
   res.json(tenMov)
 });
