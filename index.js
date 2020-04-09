@@ -1,7 +1,8 @@
 //Require func.
 const express = require('express'),
-  morgan = require('morgan');
-
+  morgan = require('morgan'),
+  bodyParser = require('body-parser');
+  
 const app = express();
 
 
@@ -104,7 +105,7 @@ app.post("/users", (req, res) => {
 });
 
 //UPDATE USER INFO
-app.post("/users/:username/:password/:email/:dateofbirth", (req, res) => {
+app.put("/users/:username/:password/:email/:dateofbirth", (req, res) => {
   res.send("User information successfully updated.")
 });
 
@@ -125,14 +126,10 @@ app.delete("/users/:username", (req, res) => {
 
 
 //ERROR HANDLING
-const bodyParser = require('body-parser'),
-  methodOverride = require('method=override');
-
   app.use(bodyParser.urlencoded({
     extended: true
   }));
   app.use(bodyParser.json());
-  app.use(methodOverride());
   app.use(function (err, req, res, next){
     console.error(err.stack);
     res.status(500).send('Something went wrong!');
