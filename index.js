@@ -5,7 +5,8 @@ const express = require('express'),
 const app = express();
 
 
-let tenMov = [ {
+let Movies = [
+  {
   title : 'He Got Game',
   year: '1998',
   director: 'Spike Lee',
@@ -64,13 +65,64 @@ let tenMov = [ {
 app.use(express.static('public'));
 //Morgan
 app.use(morgan('common'));
+
 //GET functions
-app.get('/movies', function(req, res){
-  res.json(tenMov)
-});
 app.get('/', function(req,res){
   res.send('Welcome to my Top Ten Films')
 });
+
+//LIST OF ALL MOVIES
+app.get('/movies', function(req, res){
+  res.send("Successful GET request returning data about all movies.")
+});
+
+//SINGLE MOVIE
+app.get("/movies/:titles", (req, res) => {
+  res.send("Successful GET request returning data about a single movie")
+});
+
+//GENRE BY NAME
+app.get("/genre/:name", (req, res) => {
+  res.send("Successful GET request returning data about a movie genre.")
+});
+
+//DIRECTOR BY NAME
+app.get("/director/:name", (req, res) => {
+  res.send("Success GET request returning data about a director.")
+});
+
+//ADD NEW USER
+app.post("/users", (req, res) => {
+  let newUser = req.body;
+
+  if(!newUser.username){
+    const message = "Missing User Name in request body.";
+    res.status(400).send(message)
+  } else {
+    res.send("User successfully added.")
+  }
+});
+
+//UPDATE USER INFO
+app.post("/users/:username/:password/:email/:dateofbirth", (req, res) => {
+  res.send("User information successfully updated.")
+});
+
+//ADD MOVIE TO FAVORITES
+app.post("/favorites/:username/:title", (req, res) => {
+  res.send("User successfully added movie to favorites.")
+});
+
+//REMOVES MOVIE FROM FAVORITES
+app.delete("/favorites/:username/:title", (req, res) =>{
+  res.send("Movie succesfully removed from user favorites.")
+});
+
+//DELETE USER FROM REGISTRY
+app.delete("/users/:username", (req, res) => {
+  res.send("User succesfully removed from registry.")
+});
+
 
 //ERROR HANDLING
 const bodyParser = require('body-parser'),
@@ -85,6 +137,8 @@ const bodyParser = require('body-parser'),
     console.error(err.stack);
     res.status(500).send('Something went wrong!');
   });
+
+
 
 
 
