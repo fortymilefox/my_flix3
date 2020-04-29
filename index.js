@@ -9,6 +9,9 @@ const app = express();
 
 const Movies = Models.Movie;
 const Users = Models.User;
+const passport = require('passport');
+require('./passport.js');
+
 mongoose.connect('mongodb://localhost:27017/myFlixDB',{
   useNewUrlParser: true, useUnifiedTopology: true
 });
@@ -17,8 +20,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
-//serve static files
-//app.use(express.static('public'));
+
+//Authentication
+let auth = require('./auth')(app);
+
 //Morgan
 app.use(morgan('common'));
 
@@ -28,7 +33,7 @@ app.get('/', function(req,res){
 });
 
 //get ALL MOVIES
-app.get('/movies', function(req, res){
+app.get('/movies', passport.authenticate('jwt',{session: false}), function(req, res){
   Movies.find()
   .then(function(movies){
     res.status(201).json(movies)
