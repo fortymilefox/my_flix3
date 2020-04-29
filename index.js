@@ -3,14 +3,14 @@ const express = require('express'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose');
-  Models = require('./models.js');
+  Models = require('./models');
 
 const app = express();
 
 const Movies = Models.Movie;
 const Users = Models.User;
 const passport = require('passport');
-require('./passport.js');
+require('./passport');
 
 mongoose.connect('mongodb://localhost:27017/myFlixDB',{
   useNewUrlParser: true, useUnifiedTopology: true
