@@ -2,8 +2,12 @@
 const express = require('express'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
-  mongoose = require('mongoose');
+  mongoose = require('mongoose'),
   Models = require('./models');
+  cors = require('cors');
+
+const {check, validationResult } = require('express-validator');
+
 
 const app = express();
 
@@ -23,6 +27,19 @@ app.use(bodyParser.json());
 
 //Authentication
 let auth = require('./auth')(app);
+
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1) {//If a specific origin isnt found on the list of allowed origins
+    let message = 'The CORS policy for this application doesnt allow access from origin ' + origin;
+    return callback (new Error(message ), false);
+    }
+    return callback (null, true);
+  }
+}));
 
 //Morgan
 app.use(morgan('common'));
@@ -109,26 +126,38 @@ app.get('/movies/directors/:Name', passport.authenticate('jwt',{session: false})
 
 
 //add NEW USER
-app.post("/users", passport.authenticate('jwt',{session: false}),function(req, res) {
+app.post("/users",[
+  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail()
+], (req, res) => {
+  let errors = validationResult(req);
+
+  if (!errors.isEmpty()){
+    return res.status(422).json({errors: errors.array() });
+  }
+
+  let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({Username: req.body.Username})
-  .then(function(user){
+  .then((user) => {
     if (user) {
       return res.status(400).send(req.body.Username + "already exists.");
     } else {
       Users
       .create({
         Username: req.body.Username,
-        Password: req.body.Password,
+        Password: hashedPassword,
         Email: req.body.Email,
         Birthday: req.body.Birthday
       })
-      .then(function(user) {res.status(201).json(user)})
-      .catch(function(error){
+      .then((user) => {res.status(201).json(user)})
+      .catch((error) => {
         console.error(error);
         res.status(500).send("Error: " + error);
       })
     }
-  }).catch(function(error){
+  }).catch((error) => {
     console.error(error);
     res.status(500).send("Error: " + error);
   })
@@ -216,4 +245,7 @@ app.delete("/users/:Username", passport.authenticate('jwt',{session: false}),(re
 
 
 //listen
-app.listen(8080)
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
+  console.log('Listening on Port ' + port);
+});
