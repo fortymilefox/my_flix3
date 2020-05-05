@@ -5,6 +5,7 @@ const express = require('express'),
   mongoose = require('mongoose'),
   Models = require('./models');
   cors = require('cors');
+  timeout = require('connect-timeout');
 
 const {check, validationResult } = require('express-validator');
 
@@ -67,7 +68,7 @@ app.get('/movies', passport.authenticate('jwt',{session: false}), function(req, 
 
 
 //get ALL USERS
-app.get('/users', passport.authenticate('jwt',{session: false}), function(req,res){
+app.get('/users', timeout('20s'), passport.authenticate('jwt',{session: false}), function(req,res){
   Users.find()
   .then(function(users){
     res.status(201).json(users)
