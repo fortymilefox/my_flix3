@@ -5,7 +5,7 @@ const express = require('express'),
   mongoose = require('mongoose'),
   Models = require('./models');
   cors = require('cors');
-  timeout = require('connect-timeout');
+  ;
 
 const {check, validationResult } = require('express-validator');
 
@@ -21,7 +21,7 @@ require('./passport');
   //useNewUrlParser: true, useUnifiedTopology: true
 //});
 
-mongoose.connect('process.env.CONNECTION_URI',{
+mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true, useUnifiedTopology: true
 });
 
@@ -68,7 +68,7 @@ app.get('/movies', passport.authenticate('jwt',{session: false}), function(req, 
 
 
 //get ALL USERS
-app.get('/users', timeout('20s'), passport.authenticate('jwt',{session: false}), function(req,res){
+app.get('/users', passport.authenticate('jwt',{session: false}), function(req,res){
   Users.find()
   .then(function(users){
     res.status(201).json(users)
@@ -136,7 +136,7 @@ app.post("/users",[
   check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
   check('Password', 'Password is required').not().isEmpty(),
   check('Email', 'Email does not appear to be valid').isEmail()
-], (req, res) => {
+], function(req, res) {
   let errors = validationResult(req);
 
   if (!errors.isEmpty()){
