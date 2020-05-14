@@ -152,7 +152,7 @@ app.post("/users",[
       Users
       .create({
         Username: req.body.Username,
-        Password: req.body.Password,
+        Password: hashedPassword,
         Email: req.body.Email,
         Birthday: req.body.Birthday
       })
@@ -174,7 +174,7 @@ app.put("/users/:Username", passport.authenticate('jwt',{session: false}),(req, 
     $set:
     {
       Username: req.body.Username,
-      Password: hashedPassword,
+      Password: req.body.Password,
       Email: req.body.Email,
       Birthday: req.body.Birthday
     }
