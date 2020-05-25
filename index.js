@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 //Authentication
 let auth = require('./auth')(app);
 
-let allowedOrigins = ['http://localhost:1234', 'https://myflix-1.herokuapp.com', 'http://localhost:61950'];
+let allowedOrigins = ['*'];
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
