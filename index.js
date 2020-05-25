@@ -45,6 +45,8 @@ app.use(cors({
   }
 }));
 
+app.options('*', cors());
+
 //Morgan
 app.use(morgan('common'));
 
