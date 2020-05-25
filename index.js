@@ -1,11 +1,11 @@
 //Require func.
-const express = require('express'),
-  morgan = require('morgan'),
-  bodyParser = require('body-parser'),
-  mongoose = require('mongoose'),
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose'),
   Models = require('./models');
-cors = require('cors');
-;
+const cors = require('cors');
+
 
 const { check, validationResult } = require('express-validator');
 
@@ -45,7 +45,6 @@ app.use(cors({
   }
 }));
 
-app.options('*', cors());
 
 //Morgan
 app.use(morgan('common'));
@@ -251,7 +250,7 @@ app.use(function (err, req, res, next) {
 
 
 //listen
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5000;
 app.listen(port, '0.0.0.0', () => {
   console.log('Listening on Port ' + port);
 });
