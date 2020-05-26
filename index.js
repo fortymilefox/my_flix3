@@ -33,7 +33,9 @@ app.use(bodyParser.json());
 //Authentication
 let auth = require('./auth')(app);
 
-let allowedOrigins = ['*'];
+//let allowedOrigins = ['*'];
+app.options('*', cors())
+
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
