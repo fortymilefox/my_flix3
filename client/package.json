@@ -1,10 +1,14 @@
 {
   "dependencies": {
     "axios": "^0.19.2",
+    "prop": "^0.1.1",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "reat": "0.0.1-security"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
