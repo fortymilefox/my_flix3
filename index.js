@@ -47,7 +47,7 @@ let auth = require('./auth')(app);
 //   }
 // }));
 app.use(cors())
-            
+
 //Morgan
 app.use(morgan('common'));
 
