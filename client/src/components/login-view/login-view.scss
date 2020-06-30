@@ -1,0 +1,14 @@
+$primary-color: #F0F0F0;
+$secondary-color: #191970;
+
+* {
+  background-color: $primary-color;
+}
+
+.signin-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 100px;
+}
+

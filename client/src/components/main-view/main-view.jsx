@@ -4,6 +4,7 @@ import {LoginView} from '../login-view/login-view';
 import {RegistrationView} from '../registration-view/registration-view';
 import {MovieCard} from '../movie-card/movie-card';
 import {MovieView} from '../movie-view/movie-view';
+import './main-view.scss';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';

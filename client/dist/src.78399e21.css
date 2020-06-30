@@ -1,3 +1,28 @@
+* {
+  background-color: #F0F0F0;
+}
+
+.signin-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 100px;
+}
+.movie-view {
+  display: inline-block;
+  text-align: center;
+  padding: 150px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.movie-title {
+  font-size: 25px;
+  font-style: italic;
+}
+.main-view {
+  margin: 50px;
+}
 .my-flix {
   color: steelblue;
 }
