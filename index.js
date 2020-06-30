@@ -46,7 +46,7 @@ let auth = require('./auth')(app);
 //     return callback(null, true);
 //   }
 // }));
-app.use(cors())
+app.use(cors());
 
 //Morgan
 app.use(morgan('common'));
@@ -57,7 +57,7 @@ app.get('/', function (req, res) {
 });
 
 //get ALL MOVIES
-app.get('/movies', function (req, res) {
+app.get('/movies', passport.authenticate('jwt', { session: false }), function (req, res) {
   Movies.find()
     .then(function (movies) {
       res.status(201).json(movies)
