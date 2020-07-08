@@ -1,0 +1,57 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js add react-bo
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.16.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/react-bo: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:66987:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:140748:22)
+      at Request.emit (events.js:311:20)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:141720:10)
+      at Request.emit (events.js:311:20)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:141642:12)
+      at Object.onceWrapper (events.js:417:28)
+      at IncomingMessage.emit (events.js:323:22)
+      at endReadableNT (_stream_readable.js:1204:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+
+npm manifest: 
+  {
+    "dependencies": {
+      "axios": "^0.19.2",
+      "boots": "^0.3.0",
+      "prop": "^0.1.1",
+      "prop-types": "^15.7.2",
+      "react": "^16.13.1",
+      "react-boot": "0.0.2",
+      "react-bootstrap": "^1.0.1",
+      "react-dom": "^16.13.1",
+      "react-router": "^5.2.0",
+      "react-router-dom": "^5.2.0",
+      "reat": "0.0.1-security"
+    },
+    "devDependencies": {
+      "babel-core": "^6.26.3",
+      "babel-plugin-transform-class-properties": "^6.24.1",
+      "babel-preset-env": "^1.7.0",
+      "babel-preset-react": "^6.24.1",
+      "sass": "^1.26.5"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

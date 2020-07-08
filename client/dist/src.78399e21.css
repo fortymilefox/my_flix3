@@ -1,3 +1,6 @@
+.main-view {
+  margin: 50px;
+}
 * {
   background-color: #F0F0F0;
 }
@@ -19,9 +22,6 @@
 .movie-title {
   font-size: 25px;
   font-style: italic;
-}
-.main-view {
-  margin: 50px;
 }
 .my-flix {
   color: steelblue;
