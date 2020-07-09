@@ -1,7 +1,15 @@
+*{
+  max-width: 500px;
+  margin: auto;
+}
+
 .movie-view{
   display: inline-block;
+  align-content: center;
   text-align: center;
   padding: 150px;
+  padding-left: 50px;
+  padding-right: 50px;
   border: 1px solid black;
   border-radius: 5px;
 }
@@ -9,5 +17,15 @@
 .movie-title{
   font-size: 25px;
   font-style: italic;
+  line-height: 200%;
 
+}
+
+.movie-poster{
+  max-width: 400px;
+  border-radius: 5px;
+}
+
+.movie-description{
+  max-width: 500px;
 }

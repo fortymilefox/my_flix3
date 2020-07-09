@@ -1,6 +1,8 @@
+import './registration-view.scss';
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
@@ -10,7 +12,7 @@ export function RegistrationView(props) {
   const [email, createEmail] = useState('');
   const [birthday, createBirthday] = useState('');
 
-  const handleRegister = (e) => {
+  const handleSubmit= (e) => {
     e.preventDefault();
     
     axios.post('https://myflix-1.herokuapp.com/users', {
@@ -29,9 +31,9 @@ export function RegistrationView(props) {
     });
   };
 
-  returns(
-    <Container className="regContainer">
-      <Form className="regForm">
+  return(
+    <Container className="reg-container">
+      <Form className="reg-form">
         <Form.Group controlId="formEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control type="email" placeholder="Email" value={email} onChange={(e)=> createEmail(e.target.value)} />
