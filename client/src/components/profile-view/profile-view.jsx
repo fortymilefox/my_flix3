@@ -59,6 +59,7 @@ export class ProfileView extends React.Component {
               <Card.Text>Password: ****** </Card.Text>
               <Card.Text>Email: {this.state.Email} </Card.Text>
               <Card.Text>Birthday: {this.state.Birthday} </Card.Text>
+              
 
             </Card.Body>
           </Card>
