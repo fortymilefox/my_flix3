@@ -38960,7 +38960,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Authorization: "Bearer ".concat(token)
         }
       }).then(function (res) {
-        _this2.setState({
+        _this2.setUser({
           Username: res.data.Username,
           Password: res.data.Password,
           Email: res.data.Email,
@@ -41886,12 +41886,15 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     movies: state.movies
   };
-}; //#4
+};
 
+var mapDispatchToProps = {
+  setMovies: _actions.setMovies,
+  setUser: _actions.setUser //#4
 
-var _default = (0, _reactRedux.connect)(mapStateToProps, {
-  setMovies: _actions.setMovies
-})(MainView);
+};
+
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MainView);
 
 exports.default = _default;
 },{"./main-view.scss":"components/main-view/main-view.scss","react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../../actions/actions":"actions/actions.js","../movies-list/movies-list":"components/movies-list/movies-list.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","react-bootstrap/Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","react-bootstrap/Nav":"../node_modules/react-bootstrap/esm/Nav.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/NavbarBrand":"../node_modules/react-bootstrap/esm/NavbarBrand.js","react-bootstrap/NavbarToggle":"../node_modules/react-bootstrap/esm/NavbarToggle.js","react-bootstrap/NavbarCollapse":"../node_modules/react-bootstrap/esm/NavbarCollapse.js"}],"reducers/reducers.js":[function(require,module,exports) {
@@ -41947,7 +41950,8 @@ function user() {
 
 var moviesApp = (0, _redux.combineReducers)({
   visibilityFilter: visibilityFilter,
-  movies: movies
+  movies: movies,
+  user: user
 });
 var _default = moviesApp;
 exports.default = _default;
@@ -41999,7 +42003,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var store = (0, _redux.createStore)(_reducers.default);
+var store = (0, _redux.createStore)(_reducers.default, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 var MyFlixApplication = /*#__PURE__*/function (_React$Component) {
   _inherits(MyFlixApplication, _React$Component);
@@ -42056,7 +42060,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63144" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55966" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

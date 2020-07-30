@@ -32,7 +32,7 @@ export class ProfileView extends React.Component {
     })
 
     .then((res) => {
-      this.setState({
+      this.setUser({
         Username: res.data.Username,
         Password: res.data.Password,
         Email: res.data.Email,
