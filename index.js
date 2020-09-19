@@ -1,4 +1,5 @@
 //Require func.
+const path = require("path");
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -47,6 +48,13 @@ let auth = require('./auth')(app);
 //   }
 // }));
 app.use(cors());
+
+app.use(express.static('public'));
+app.use("/client", express.static(path.join(__dirname, "client", "dist")));
+
+app.get("/client/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 //Morgan
 app.use(morgan('common'));
